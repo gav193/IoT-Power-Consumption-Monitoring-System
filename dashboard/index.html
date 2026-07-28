@@ -1,0 +1,263 @@
+<!-- Power Consumption Dashboard Kelompok 9 -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>PowerMonitor Dashboard</title>
+
+  <link rel="stylesheet"
+        href="style.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+  <!-- ========================= TOP BAR ========================== -->
+
+  <header class="topbar">
+
+    <div class="logo-area">
+      <h1>⚡ PowerMonitor</h1>
+      <p>EL4044 Kelompok 9</p>
+    </div>
+
+    <div class="top-right">
+
+      <!-- MQTT STATUS -->
+
+      <div id="connectionStatus"
+           class="status">
+
+        <span id="statusDot"
+              class="dot"></span>
+
+        Online
+
+      </div>
+
+      <!-- DEVICE -->
+
+      <div class="device">
+        Device: PZEM-001
+      </div>
+
+      <!-- LAST UPDATE -->
+
+      <div id="lastUpdate">
+        Waiting data...
+      </div>
+
+    </div>
+
+  </header>
+
+  <!-- ========================= MAIN ========================== -->
+
+<main class="container">
+
+  <!--
+  <div class="title">
+
+    <h2>Dashboard</h2>
+
+    <p>
+      Real-time energy monitoring and analytics
+    </p>
+
+  </div>
+  -->
+
+  <!-- DASHBOARD GRID -->
+
+  <div class="dashboard-grid">
+
+    <!-- LEFT SIDE -->
+
+    <div class="left-panel">
+
+      <!-- METRIC CARDS -->
+
+      <section class="cards">
+
+        <div class="card blue active"
+          data-metric="voltage">
+
+          <div class="card-title">
+            ⚡ VOLTAGE
+          </div>
+
+          <div id="voltage"
+              class="value">
+            0 V
+          </div>
+
+          <div class="status-text">
+            ● Normal
+          </div>
+
+        </div>
+
+        <div class="card green"
+          data-metric="current">
+
+          <div class="card-title">
+            ⎓ CURRENT
+          </div>
+
+          <div id="current"
+              class="value">
+            0 A
+          </div>
+
+          <div class="status-text">
+            ● Normal
+          </div>
+
+        </div>
+
+        <div class="card yellow"
+          data-metric="power">
+
+          <div class="card-title">
+            ⚡ POWER
+          </div>
+
+          <div id="power"
+              class="value">
+            0 W
+          </div>
+
+          <div class="status-text">
+            ● Normal
+          </div>
+
+        </div>
+
+        <div class="card purple"
+          data-metric="pf">
+
+          <div class="card-title">
+            Φ POWER FACTOR
+          </div>
+
+          <div id="pf"
+              class="value">
+            0
+          </div>
+
+          <div class="status-text">
+            ● Normal
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- CHART -->
+
+      <section class="chart-card">
+
+        <div class="chart-header">
+
+          <h3>📈 Historical Data</h3>
+
+          <p>
+            Click metric card to switch graph
+          </p>
+
+        </div>
+
+        <canvas id="powerChart"></canvas>
+
+      </section>
+      
+      <!-- COST -->
+
+      <section class="bottom-panel">
+
+        <div class="relay-card">
+
+          <div class="relay-info">
+
+            <h3>Relay Control</h3>
+
+            <div id="relayStatus"
+                 class="relay-status-text">
+              Relay: OFF
+            </div>
+
+            <p id="relaySwitchText">
+              Switch OFF
+            </p>
+
+          </div>
+
+          <label class="relay-switch"
+                 aria-label="Relay switch">
+            <input type="checkbox"
+                   id="relaySwitch">
+            <span class="relay-slider"></span>
+          </label>
+
+        </div>
+
+        <div class="cost-card">
+
+          <h3>
+            Estimated Monthly Cost
+          </h3>
+
+          <div class="cost-value">
+            Rp 0
+          </div>
+
+          <p>
+            Estimated from realtime usage
+          </p>
+
+        </div>
+
+      </section>
+
+    </div>
+
+    <!-- RIGHT SIDE -->
+
+    <aside class="notification-panel">
+
+      <div class="notification-header">
+
+        <h3>
+          🔔 Notifications
+        </h3>
+
+      </div>
+
+      <div id="notificationList"
+          class="notification-list">
+
+      </div>
+
+    </aside>
+
+  </div>
+
+</main>
+
+  <!-- ========================= MQTT ========================== -->
+
+  <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>
